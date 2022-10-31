@@ -11,7 +11,7 @@ export class CreateUserController {
     const result = await service.execute({ email, password, name, cpf_cnpj, cellphone, type });
 
     if(result instanceof AppError) {
-      return response.status(result.statusCode).json(result);
+      return response.status(result.statusCode).json({ message: result.message });
     }
 
     return response.json(result);
