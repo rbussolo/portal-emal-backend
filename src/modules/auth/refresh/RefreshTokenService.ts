@@ -1,5 +1,3 @@
-import { verify } from "jsonwebtoken";
-
 import { User } from './../../users/entities/User';
 import { AppDataSource } from './../../../data-source';
 import { AppError } from './../../../errors/AppError';
@@ -10,10 +8,10 @@ export class RefreshTokenService {
   async execute(refresh_token: string): Promise<Tokens | AppError>{
     const result = Auth.validRefreshToken(refresh_token);
     
-    if(result instanceof AppError) {
+    if (result instanceof AppError) {
       return result;
     }
-    
+
     const repo = AppDataSource.getRepository(User);
     const user = await repo.findOne({ where: { id: result.user_id } });
     
@@ -25,6 +23,12 @@ export class RefreshTokenService {
       cellphone: user.cellphone,
       type: user.type
     });
+
+    const nearToExpired = Auth.nearToExpired(result.exp);
+
+    if (nearToExpired) {
+      refresh_token = Auth.generateRefreshToken(user.id);
+    }
     
     return { access_token, refresh_token };
   }

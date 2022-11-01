@@ -99,6 +99,14 @@ const Auth = {
 
       return new AppError("Refresh Token error", 401);
     }
+  },
+  nearToExpired: (expiration: number): boolean => {
+    const actualTime = Math.floor(Date.now() / 1000);
+
+    console.log(expiration)
+    console.log(actualTime)
+
+    return false;
   }
 }
 
