@@ -25,6 +25,15 @@ export class RefreshTokenService {
       cellphone: user.cellphone,
       type: user.type
     });
+
+    // Check if it's necessary update the refresh token (after 12h it's good generate a new refresh token)
+    const timeAfter12h = Math.floor(Date.now() / 1000) + (60 * 60 * 12);
+
+    if (timeAfter12h > result.exp) {
+      const new_refresh_token = Auth.generateRefreshToken(user.id);
+
+      return { access_token, refresh_token: new_refresh_token };
+    }
     
     return { access_token, refresh_token };
   }
