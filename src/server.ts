@@ -1,9 +1,10 @@
 import express from "express";
 
-import { AppDataSource } from "./data-source";
+import { AppDataSource, EmalDataSource } from "./data-source";
 import { router } from "./routes";
 
 AppDataSource.initialize();
+EmalDataSource.initialize();
 
 const app = express();
 const port = 3000;

@@ -9,12 +9,15 @@ import { CreateUserController } from '../modules/users/useCases/createUser/Creat
 import { ListUserController } from '../modules/users/useCases/listUser/ListUserController';
 import { UpdateUserController } from '../modules/users/useCases/updateUser/UpdateUserController';
 import { ForgotPasswordController } from '../modules/users/useCases/forgotPassword/ForgorPasswordController';
+import { MigrateuserController } from "../modules/emal/clients/useCases/migrateUser/MigrateUserController";
 
 const router = Router();
 
 router.post("/auth/sign", new AuthenticateController().handle);
 router.post("/auth/refresh", new RefreshTokenController().handle);
 router.post("/user/forgotPassword", new ForgotPasswordController().handle);
+router.post("/user/resetPassword/:token", new ForgotPasswordController().handle);
+router.post("/user/migrate", new MigrateuserController().handle);
 
 router.post("/users", ensuredAuthenticad, new CreateUserController().handle);
 router.get("/users", ensuredAuthenticad, new ListUserController().handle);

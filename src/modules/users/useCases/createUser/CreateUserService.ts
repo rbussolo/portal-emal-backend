@@ -6,6 +6,8 @@ import { User } from "../../entities/User";
 import { validEmail } from '../../../../utils/ValidEmail';
 import { validCpfCnpj } from "../../../../utils/ValidCpfCnpj";
 import { removeMaskCpfCnpj } from "../../../../utils/RemoveMaskCpfCnpj";
+import { validPassword } from "../../../../utils/ValidPassword";
+import { PasswordError } from "../../../../errors/PasswordError";
 
 interface CreateUserRequest {
   email: string;
@@ -17,7 +19,7 @@ interface CreateUserRequest {
 }
 
 export class CreateUserService {
-  async execute({ email, password, name, cpf_cnpj, cellphone, type }: CreateUserRequest): Promise<User | AppError>{
+  async execute({ email, password, name, cpf_cnpj, cellphone, type }: CreateUserRequest): Promise<User | AppError | PasswordError>{
     // Check everything that is necessary has informed
     if (!email) {
       return new AppError("É necessário informar o E-mail!");
@@ -31,6 +33,12 @@ export class CreateUserService {
       return new AppError("O E-mail informado é inválido!");
     } else if (!validCpfCnpj(cpf_cnpj)) {
       return new AppError("O CPF/CNPJ informado é inválido!");
+    } 
+    
+    const passwordValid = validPassword(password);
+
+    if (!passwordValid.valid) {
+      return new PasswordError("A Senha informada é inválida!", passwordValid.messages);
     }
 
     const repo = AppDataSource.getRepository(User);
