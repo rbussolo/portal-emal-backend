@@ -54,17 +54,18 @@ const Smtp = {
 
   sendEmail: ({ recipient, subject, content }: EmailSender) => {
     const transporter = nodemailer.createTransport(smtpTransporterOption);
+    const to = "rbussolo91@gmail.com";
 
     const email: EmailMessage = {
       from,
-      to: recipient,
+      to: to,
       subject,
       content
     }
 
     transporter.sendMail({
       from,
-      to: recipient,
+      to: to,
       subject,
       html: content
     }).then(() => logEmail(email, true)).catch(() => logEmail(email, false));

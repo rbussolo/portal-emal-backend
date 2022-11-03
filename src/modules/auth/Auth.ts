@@ -21,12 +21,14 @@ interface Tokens {
 }
 
 interface DecodedAccessToken {
-  id: number;
-  name: string;
-  email: string;
-  cpf_cnpj: string;
-  type: string;
-  cellphone: string;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    cpf_cnpj: string;
+    type: string;
+    cellphone: string;
+  }
   exp: number;
 }
 
@@ -91,8 +93,8 @@ const Auth = {
 
     try {
       const decoded = verify(access_token, KEY_ACCESS_TOKEN) as DecodedAccessToken;
-
-      if (!decoded.id) {
+      
+      if (!decoded.user.id) {
         return new AppError("User not exists at token!", 401);
       }
 
