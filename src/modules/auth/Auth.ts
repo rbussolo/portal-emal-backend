@@ -51,6 +51,25 @@ const KEY_REFRESH_TOKEN = "5AUZo0jaoziuUsZTBzC3on2Z5Lzt9tFv";
 const KEY_RESET_PASSWORD_TOKEN = "xKtWDf5mqRUc3Xa0TzncppiHpobHPdog";
 const KEY_MIGRATE_USER_TOKEN = "RVXA1qf8nPZIXbTkqKCHpTLjFgk7Ys5y";
 
+function decodToken(token: string, key_token: string) {
+  if (!token) {
+    return new AppError("Token is necessary!");
+  }
+
+  try {
+    const decoded = verify(token, key_token);
+
+    return decoded;
+  } catch (error) {
+    if (error instanceof TokenExpiredError || error instanceof JsonWebTokenError || error instanceof NotBeforeError) {
+      return new AppError(error.name, 401);
+    }
+
+    return new AppError("Access Token error", 401);
+  }
+}
+
+
 const Auth = {
   generateAccessToken: ({ id, name, email, cpf_cnpj, cellphone, type }: AccessToken): string => {
     const access_token = sign({
@@ -87,88 +106,64 @@ const Auth = {
     return { access_token, refresh_token };
   },
   validAccessToken: (access_token: string): AppError | DecodedAccessToken => {
-    if (!access_token) {
-      return new AppError("Access token not found!");
+    const result = decodToken(access_token, KEY_ACCESS_TOKEN);
+
+    if(result instanceof AppError) {
+      return result;
     }
 
-    try {
-      const decoded = verify(access_token, KEY_ACCESS_TOKEN) as DecodedAccessToken;
-      
-      if (!decoded.user.id) {
-        return new AppError("User not exists at token!", 401);
-      }
+    const decoded = result as DecodedAccessToken;
 
-      return decoded;
-    } catch (error) {
-      if (error instanceof TokenExpiredError || error instanceof JsonWebTokenError || error instanceof NotBeforeError) {
-        return new AppError(error.name, 401);
-      }
-
-      return new AppError("Access Token error", 401);
+    if (!decoded.user.id) {
+      return new AppError("User not exists at token!", 401);
     }
+
+    return decoded;
   },
   validRefreshToken: (refresh_token: string): AppError | DecodedRefreshToken => {
-    if (!refresh_token) {
-      return new AppError("Refresh token not found!");
+    const result = decodToken(refresh_token, KEY_REFRESH_TOKEN);
+
+    if (result instanceof AppError) {
+      return result;
     }
 
-    try {
-      const decoded = verify(refresh_token, KEY_REFRESH_TOKEN) as DecodedRefreshToken;
+    const decoded = result as DecodedRefreshToken;
 
-      if (!decoded.user_id) {
-        return new AppError("User not exists at token!", 401);
-      }
-
-      return decoded;
-    } catch (error) {
-      if (error instanceof TokenExpiredError || error instanceof JsonWebTokenError || error instanceof NotBeforeError) {
-        return new AppError(error.name, 401);
-      }
-
-      return new AppError("Refresh Token error", 401);
+    if (!decoded.user_id) {
+      return new AppError("User not exists at token!", 401);
     }
+
+    return decoded;
   },
   validResetPasswordToken: (reset_password_token: string): DecodedResetPassword | AppError => {
-    if (!reset_password_token) {
-      return new AppError("Token not found!");
+    const result = decodToken(reset_password_token, KEY_RESET_PASSWORD_TOKEN);
+
+    if (result instanceof AppError) {
+      return result;
     }
 
-    try {
-      const decoded = verify(reset_password_token, KEY_RESET_PASSWORD_TOKEN) as DecodedResetPassword;
+    const decoded = result as DecodedResetPassword;
 
-      if (!decoded.user_id) {
-        return new AppError("User not exists at token!", 401);
-      }
-
-      return decoded;
-    } catch (error) {
-      if (error instanceof TokenExpiredError || error instanceof JsonWebTokenError || error instanceof NotBeforeError) {
-        return new AppError(error.name, 401);
-      }
-
-      return new AppError("Refresh Token error", 401);
+    if (!decoded.user_id) {
+      return new AppError("User not exists at token!", 401);
     }
+
+    return decoded;
   },
   validMigrateUserToken: (migrate_user_token: string): DecodedMigrateUser | AppError => {
-    if (!migrate_user_token) {
-      return new AppError("Token not found!");
+    const result = decodToken(migrate_user_token, KEY_MIGRATE_USER_TOKEN);
+
+    if (result instanceof AppError) {
+      return result;
     }
 
-    try {
-      const decoded = verify(migrate_user_token, KEY_MIGRATE_USER_TOKEN) as DecodedMigrateUser;
+    const decoded = result as DecodedMigrateUser;
 
-      if (!decoded.cpf_cnpj || !decoded.email) {
-        return new AppError("Token invalid!", 401);
-      }
-
-      return decoded;
-    } catch (error) {
-      if (error instanceof TokenExpiredError || error instanceof JsonWebTokenError || error instanceof NotBeforeError) {
-        return new AppError(error.name, 401);
-      }
-
-      return new AppError("Refresh Token error", 401);
+    if (!decoded.cpf_cnpj || !decoded.email) {
+      return new AppError("Token invalid!", 401);
     }
+
+    return decoded;
   }
 }
 
