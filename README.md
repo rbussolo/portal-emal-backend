@@ -46,7 +46,7 @@ yarn start
 
 Foi utilizado a questão de variaveis de ambiente para realizar a parametrizações de alguns itens, então é necessário criar o arquivo chamado ".env" na pasta raiz da aplicação, com as seguintes variaveis:
 
-´´´
+```
 NODE_ENV="development"
 
 SMTP_HOST="smtp.gmail.com"
@@ -67,4 +67,4 @@ DATABASE_EMAL_USERNAME="usuario"
 DATABASE_EMAL_PASSWORD="senha"
 DATABASE_EMAL_DATABASE="database"
 DATABASE_EMAL_SERVICE="serviceName"
-´´´
+```
