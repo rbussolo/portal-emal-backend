@@ -22,11 +22,11 @@ interface EmailMessage {
 const from = '"Postal Atendimento" <rbussolo91@gmail.com>';
 
 const smtpTransporterOption: SMTPTransport.Options = {
-  host: 'smtp.gmail.com',
-  port: 587,
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT, 10),
   auth: {
-    user: 'rbussolo91@gmail.com',
-    pass: 'ufqbvjsrvuzjnnjh'
+    user: process.env.SMTP_AUTH_USER,
+    pass: process.env.SMTP_AUTH_PASS
   }
 }
 
@@ -54,7 +54,7 @@ const Smtp = {
 
   sendEmail: ({ recipient, subject, content }: EmailSender) => {
     const transporter = nodemailer.createTransport(smtpTransporterOption);
-    const to = "rbussolo91@gmail.com";
+    const to = process.env.NODE_ENV == 'production' ? recipient : process.env.SMTP_RECIPIENT_TEST;
 
     const email: EmailMessage = {
       from,
