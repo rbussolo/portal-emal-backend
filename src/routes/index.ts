@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { AuthenticateController } from '../modules/auth/authentitace/AuthenticateController';
+import { AuthenticateController } from '../modules/auth/authenticate/AuthenticateController';
 import { RefreshTokenController } from './../modules/auth/refresh/RefreshTokenController';
 
 import { ensuredAuthenticad } from '../middlewares/EnsureAuthenticated';
@@ -9,15 +9,21 @@ import { CreateUserController } from '../modules/users/useCases/createUser/Creat
 import { ListUserController } from '../modules/users/useCases/listUser/ListUserController';
 import { UpdateUserController } from '../modules/users/useCases/updateUser/UpdateUserController';
 import { ForgotPasswordController } from '../modules/users/useCases/forgotPassword/ForgorPasswordController';
+import { MigrateuserController } from "../modules/emal/clients/useCases/migrateUser/MigrateUserController";
+import { ResetPasswordController } from "../modules/users/useCases/resetPassword/ResetPasswordController";
+import { NewPasswordController } from "../modules/emal/clients/useCases/newPassword/NewPasswordController";
 
 const router = Router();
 
-router.post("/auth/sign", new AuthenticateController().handle);
-router.post("/auth/refresh", new RefreshTokenController().handle);
-router.post("/user/forgotPassword", new ForgotPasswordController().handle);
+router.post("/api/auth/sign", new AuthenticateController().handle);
+router.post("/api/auth/refresh", new RefreshTokenController().handle);
+router.post("/api/user/forgotPassword", new ForgotPasswordController().handle);
+router.post("/api/user/resetPassword/:token", new ResetPasswordController().handle);
+router.post("/api/user/migrate", new MigrateuserController().handle);
+router.post("/api/user/migrate/new/:token", new NewPasswordController().handle);
 
-router.post("/users", ensuredAuthenticad, new CreateUserController().handle);
-router.get("/users", ensuredAuthenticad, new ListUserController().handle);
-router.put("/users/:id", ensuredAuthenticad, new UpdateUserController().handle);
+router.post("/api/users", ensuredAuthenticad, new CreateUserController().handle);
+router.get("/api/users", ensuredAuthenticad, new ListUserController().handle);
+router.put("/api/users/:id", ensuredAuthenticad, new UpdateUserController().handle);
 
 export { router };

@@ -1,5 +1,6 @@
 import { AppDataSource } from "../../../../data-source";
 import { AppError } from "../../../../errors/AppError";
+import { Auth } from "../../../auth/Auth";
 import { Smtp } from "../../../emails/smtp";
 import { User } from "../../entities/User";
 
@@ -23,8 +24,10 @@ export class ForgotPasswordService {
       return new AppError("Não foi localizado nenhuma conta com os dados informados!");
     }
 
+    const token = Auth.generateResetPasswordToken(user.id);
+
     let emailContent = Smtp.loadTemplate('forgotPassword.html');
-    emailContent = emailContent.replace("#LINK_ALTERAR_SENHA#", "http://www.grupoemal.com.br/");
+    emailContent = emailContent.replace("#TOKEN_RESET_PASSWORD#", token);
     
     Smtp.sendEmail({
       recipient: email,

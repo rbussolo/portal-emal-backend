@@ -1,3 +1,4 @@
+import { PasswordError } from './../../../../errors/PasswordError';
 import { Request, Response } from 'express';
 import { AppError } from '../../../../errors/AppError';
 
@@ -10,8 +11,10 @@ export class CreateUserController {
     const service = new CreateUserService();
     const result = await service.execute({ email, password, name, cpf_cnpj, cellphone, type });
 
-    if(result instanceof AppError) {
+    if (result instanceof AppError) {
       return response.status(result.statusCode).json({ message: result.message });
+    } else if (result instanceof PasswordError){
+      return response.status(result.statusCode).json({ message: result.message, messages: result.messages });
     }
 
     return response.json(result);

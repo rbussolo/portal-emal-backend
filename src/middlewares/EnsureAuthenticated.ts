@@ -1,5 +1,4 @@
 import { AppError } from './../errors/AppError';
-import { JsonWebTokenError, NotBeforeError, TokenExpiredError, verify } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import { Auth } from "../modules/auth/Auth";
 
@@ -19,12 +18,12 @@ export async function ensuredAuthenticad(request: Request, response: Response, n
   }
 
   request.user = {
-    id: result.id,
-    name: result.name,
-    email: result.email,
-    cpf_cnpj: result.cpf_cnpj,
-    cellphone: result.cellphone,
-    type: result.type
+    id: result.user.id,
+    name: result.user.name,
+    email: result.user.email,
+    cpf_cnpj: result.user.cpf_cnpj,
+    cellphone: result.user.cellphone,
+    type: result.user.type
   }
 
   next();
