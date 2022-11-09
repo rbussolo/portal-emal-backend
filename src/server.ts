@@ -10,7 +10,10 @@ import { AppDataSource, EmalDataSource } from "./data-source";
 import { router } from "./routes";
 
 AppDataSource.initialize();
-EmalDataSource.initialize();
+
+if (process.env.DATABASE_EMAL_CONNECT != "NOT") {
+  EmalDataSource.initialize();
+}
 
 const app = express();
 const port = 3333;
