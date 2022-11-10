@@ -9,7 +9,7 @@ export class ResetPasswordController {
     const { password } = request.body;
 
     const service = new ResetPasswordService();
-    const result = service.execute({ token, password });
+    const result = await service.execute({ token, password });
 
     if (result instanceof AppError) {
       return response.status(result.statusCode).json({ message: result.message });

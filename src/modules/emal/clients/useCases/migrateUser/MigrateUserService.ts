@@ -1,8 +1,9 @@
-import { EmalDataSource } from "../../../../../data-source";
+import { EmalDataSource } from "../../../../../data-source-emal";
 import { AppError } from "../../../../../errors/AppError";
 import { EmalClient } from "../../entities/EmalClient";
 import { Smtp } from "../../../../emails/Smtp";
 import { Auth } from "../../../../auth/Auth";
+
 
 interface MigrateUser {
   cpf_cnpj: string;

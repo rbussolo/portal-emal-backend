@@ -139,13 +139,13 @@ const Auth = {
     const result = decodToken(reset_password_token, KEY_RESET_PASSWORD_TOKEN);
 
     if (result instanceof AppError) {
-      return result;
+      return new AppError(result.message);
     }
 
     const decoded = result as DecodedResetPassword;
 
     if (!decoded.user_id) {
-      return new AppError("User not exists at token!", 401);
+      return new AppError("User not exists at token!");
     }
 
     return decoded;
@@ -154,22 +154,14 @@ const Auth = {
     const result = decodToken(migrate_user_token, KEY_MIGRATE_USER_TOKEN);
 
     if (result instanceof AppError) {
-      return result;
+      return new AppError(result.message);
     }
 
     const decoded = result as DecodedMigrateUser;
 
     if (!decoded.cpf_cnpj || !decoded.email) {
-      return new AppError("Token invalid!", 401);
+      return new AppError("Token invalid!");
     }
-  },
-  nearToExpired: (expiration: number): boolean => {
-    const actualTime = Math.floor(Date.now() / 1000);
-
-    console.log(expiration)
-    console.log(actualTime)
-
-    return false;
   }
 }
 

@@ -1,5 +1,6 @@
 import { hash } from "bcryptjs";
-import { AppDataSource, EmalDataSource } from "../../../../../data-source";
+import { AppDataSource } from "../../../../../data-source";
+import { EmalDataSource } from "../../../../../data-source-emal";
 import { AppError } from "../../../../../errors/AppError";
 import { PasswordError } from "../../../../../errors/PasswordError";
 import { removeMaskCpfCnpj } from "../../../../../utils/RemoveMaskCpfCnpj";

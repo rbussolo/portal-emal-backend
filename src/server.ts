@@ -6,7 +6,8 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 
-import { AppDataSource, EmalDataSource } from "./data-source";
+import { AppDataSource } from "./data-source";
+import { EmalDataSource } from './data-source-emal';
 import { router } from "./routes";
 
 AppDataSource.initialize();

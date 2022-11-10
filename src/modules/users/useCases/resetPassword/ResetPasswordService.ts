@@ -5,6 +5,7 @@ import { AppError } from "../../../../errors/AppError";
 import { PasswordError } from "../../../../errors/PasswordError";
 import { validPassword } from "../../../../utils/ValidPassword";
 import { Auth } from "../../../auth/Auth";
+import { Token } from "../../../tokens/entities/Token";
 import { User } from "../../entities/User";
 
 interface ResetPassword {
@@ -43,5 +44,14 @@ export class ResetPasswordService {
     user.password = passwordHash;
 
     await repo.save(user);
+
+    // Create a new token
+    const repoToken = AppDataSource.getRepository(Token);
+
+    const tokenInsert = repoToken.create({
+      token
+    });
+
+    await repoToken.save(tokenInsert);
   }
 }
