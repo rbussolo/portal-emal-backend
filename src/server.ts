@@ -12,7 +12,7 @@ import { router } from "./routes";
 
 AppDataSource.initialize();
 
-if (process.env.DATABASE_EMAL_CONNECT != "NOT") {
+if (!process.env.DATABASE_EMAL_CONNECT || process.env.DATABASE_EMAL_CONNECT != "NOT") {
   EmalDataSource.initialize();
 }
 

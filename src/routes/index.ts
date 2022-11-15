@@ -13,12 +13,14 @@ import { MigrateuserController } from "../modules/emal/clients/useCases/migrateU
 import { ResetPasswordController } from "../modules/users/useCases/resetPassword/ResetPasswordController";
 import { NewPasswordController } from "../modules/emal/clients/useCases/newPassword/NewPasswordController";
 import { ResetCheckController } from "../modules/users/useCases/resetCheck/ResetCheckController";
+import { ForgetEmailController } from "../modules/emal/clients/useCases/forgetEmail/ForgetEmailController";
 
 const router = Router();
 
 router.post("/api/auth/sign", new AuthenticateController().handle);
 router.post("/api/auth/refresh", new RefreshTokenController().handle);
 router.post("/api/user/forgotPassword", new ForgotPasswordController().handle);
+router.post("/api/user/forgotEmail", new ForgetEmailController().handle);
 router.post("/api/user/checkToken/:token", new ResetCheckController().handle);
 router.post("/api/user/resetPassword/:token", new ResetPasswordController().handle);
 router.post("/api/user/migrate", new MigrateuserController().handle);
