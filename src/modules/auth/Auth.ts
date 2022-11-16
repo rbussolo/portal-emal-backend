@@ -162,6 +162,11 @@ const Auth = {
     if (!decoded.cpf_cnpj || !decoded.email) {
       return new AppError("Token invalid!");
     }
+  },
+  nearToExpired: (expiration: number): boolean => {
+    const actualTime = Math.floor(Date.now() / 1000) + (60 * 60 * 12);
+
+    return expiration < actualTime;
   }
 }
 

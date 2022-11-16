@@ -6,6 +6,8 @@ interface ListUserRequest {
   page: number;
   amount: number;
   name: string;
+  email: string;
+  type: string;
 }
 
 interface Users {
@@ -14,14 +16,22 @@ interface Users {
 }
 
 export class ListUserService {
-  async execute({ page, amount, name }): Promise<Users> {
+  async execute({ page, amount, name, email, type }): Promise<Users> {
     const pagination = validPagination({ page, amount });
     const repo = AppDataSource.getRepository(User);
 
     let query = repo.createQueryBuilder("users").select("users.id").addSelect("users.name").addSelect("users.email").addSelect("users.cpf_cnpj").addSelect("users.type").addSelect("users.cellphone");
 
     if(name) {
-      query = query.andWhere("users.name like :name", { name: `%${name}%` });
+      query = query.andWhere("users.name like :name", { name: `${name}%` });
+    }
+
+    if (email) {
+      query = query.andWhere("users.email like :email", { email: `${email}%` });
+    }
+
+    if (type) {
+      query = query.andWhere("users.type = :type", { type });
     }
 
     query = query.offset(pagination.offset);
