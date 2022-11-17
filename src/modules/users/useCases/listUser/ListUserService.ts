@@ -34,6 +34,7 @@ export class ListUserService {
       query = query.andWhere("users.type = :type", { type });
     }
 
+    query = query.orderBy("users.id");
     query = query.offset(pagination.offset);
     query = query.limit(pagination.amount);
 
