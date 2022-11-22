@@ -27,7 +27,7 @@ export class UpdateUserService {
       return new AppError("Usuário não localizado!");
     }
 
-    user.name = name ? name : user.name;
+    user.name = name ? name.toUpperCase() : user.name;
     user.cpf_cnpj = cpf_cnpj ? removeMaskCpfCnpj(cpf_cnpj) : user.cpf_cnpj;
     user.cellphone = cellphone ? cellphone : user.cellphone;
 

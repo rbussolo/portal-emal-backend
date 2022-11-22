@@ -13,6 +13,7 @@ interface ListUserRequest {
 interface Users {
   users: User[];
   count: number;
+  countPerPage: number;
 }
 
 export class ListUserService {
@@ -23,11 +24,11 @@ export class ListUserService {
     let query = repo.createQueryBuilder("users").select("users.id").addSelect("users.name").addSelect("users.email").addSelect("users.cpf_cnpj").addSelect("users.type").addSelect("users.cellphone");
 
     if(name) {
-      query = query.andWhere("users.name like :name", { name: `${name}%` });
+      query = query.andWhere("users.name like :name", { name: `${name.toUpperCase()}%` });
     }
 
     if (email) {
-      query = query.andWhere("users.email like :email", { email: `${email}%` });
+      query = query.andWhere("users.email like :email", { email: `${email.toLowerCase() }%` });
     }
 
     if (type) {
@@ -41,6 +42,6 @@ export class ListUserService {
     const users = await query.getMany();
     const count = await query.getCount();
 
-    return { users, count };
+    return { users, count, countPerPage: pagination.amount };
   }
 }

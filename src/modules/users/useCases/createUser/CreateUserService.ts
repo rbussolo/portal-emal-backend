@@ -54,9 +54,9 @@ export class CreateUserService {
     const passwordHash = await hash(password, 8);
 
     const user = repo.create({
-      email,
+      email: email.toLowerCase(),
       password: passwordHash,
-      name,
+      name: name.toUpperCase(),
       cpf_cnpj: removeMaskCpfCnpj(cpf_cnpj),
       cellphone,
       type
