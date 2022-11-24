@@ -15,6 +15,7 @@ import { NewPasswordController } from "../modules/emal/clients/useCases/newPassw
 import { ResetCheckController } from "../modules/users/useCases/resetCheck/ResetCheckController";
 import { ForgetEmailController } from "../modules/emal/clients/useCases/forgetEmail/ForgetEmailController";
 import { GetUserByIdController } from "../modules/users/useCases/getUserById/GetUserByIdController";
+import { DeleteUserController } from "../modules/users/useCases/deleteUser/DeleteUserController";
 
 const router = Router();
 
@@ -31,5 +32,6 @@ router.post("/api/users", ensuredAuthenticad, new CreateUserController().handle)
 router.get("/api/users/:id", ensuredAuthenticad, new GetUserByIdController().handle);
 router.get("/api/users", ensuredAuthenticad, new ListUserController().handle);
 router.put("/api/users/:id", ensuredAuthenticad, new UpdateUserController().handle);
+router.delete("/api/users/:id", ensuredAuthenticad, new DeleteUserController().handle);
 
 export { router };
