@@ -1,0 +1,97 @@
+-- Projeto de criação do Portal
+
+--- Principais objetivos
+
+Disponibilizar acesso para que o cliente, transportadora e representantes consigam realizar:
+  1. Cadastramento de pedidos
+  2. Contas a pagar e receber
+  3. Emitir boletos
+  4. Demais funcionalidades
+
+--- Funcionalidades
+
+1. Acesso do usuário [20h]
+  [ ] [4h] Criação de tela para acesso do usuário
+  [ ] [4h] Criar rotina para o "primeiro acesso"
+    [ ] Solicitar o CPF/CNPJ e e-mail de contato
+    [ ] Dar a possibilidade de exibir o e-mail de contato caso o usuário não lembre qual o e-mail esta presente no cadastro atual
+    [ ] Enviar e-mail com um link para o usuário informar a nova senha (link deve ficar válido por 15 minutos)
+
+2. Pedidos [80h]
+  [ ] [CHATGURU] [4h] Para cada movimentação do pedido, será enviado um E-mail / WhatsApp (podendo ser configurado o envio de mais de uma mensagem por movimentação)
+  [ ] [16h] Possibilidade de criar um novo pedido
+    [ ] Abrir tela com os dados do Pedido
+    [ ] Necessário informar os campos
+      [ ] CNPJ - Listar em combo apenas os CNPJs vinculados ao login de acesso
+      [ ] Carrega automaticamente as informações ao selecionar o CNPJ: Razão Social / Endereço / Fazenda / Número / Complemento / Bairro / Cidade
+      [ ] Possibilidade de adicionar vários itens ao pedido
+        [ ] O item deve conter os campos: Produto / Quantidade / Despachado
+      [ ] Possibilidade de adicionar vários transportadores
+        [ ] O transporte deve conter os campos: Placa / Motorista / Empresa / Produto / Quantidade
+      [ ] Condição de Pagamento e Cobrança, deve conter os campos: Parcela / Prazo / Total
+      [ ] Campo de Observação
+  [ ] [4h] Possibilidade de editar um pedido
+  [ ] [4h] Possibilidade de excluir um pedido
+  [ ] [4h] Possibilidade de consultar pedidos
+    [ ] Paginação padrão de 50 pedidos por paginas
+    [ ] Consulta realizada através dos campos: Período / CNPJ / Produto / Saldo / Cidade / Nº Pedido / Industrias (campo obrigatório)
+    [ ] Exibir em lista o resultado com os seguintes campos: Nº Pedido / Data / Cliente / Situação / Usina / Produto / Qtde (t) / R$ (t) / Despachado (t) / Cancelado (t) / Saldo (t) / Total (R$)
+    [ ] Ter a opção de REPLICAR - Antes da situação Aprovado
+    [ ] Ter a opção de ALTERAR
+    [ ] Ter a opção de CANCELAR - Antes da situação Aprovado
+  [ ] [16h] Na opção de ALTERAR / EDITAR irá abrir uma tela listando os transporte do pedido, listando os seguintes campos: Placa / Motorista / Empresa / Produto / Qtde (t) / Alterar / Cancelar
+    [ ] Na edição também tem que ter a opção de adicionar um Novo Carregamento
+    [ ] Na tela de Novo Carregamento ou Alteração do Transporte, deve abrir uma tela com os dados do transporte
+      [ ] Tela deve constituir com os seguintes dados: Tipo / Motorista / Empresa / Produto / Quantidade / Saldo
+      [ ] O Saldo não pode ficar negativo, deve bloquear a ação de gravar e constar a seguinte mensagem: Quantidade excede ao pedido. Entre em contato com o CAC ou faça um novo pedido.
+  [ ] [8h] Após geração de um novo pedido, necessário o CAC realizar a aprovação
+    [ ] Listagem de Pedidos a serem aprovados com os seguintes campos: Nº Pedido / CNPJ / Nome Empresarial / Usina / Produto / Quantidade / R$/KG / Valor Total / Prazo
+    [ ] Opção de APROVAR / REPROVAR
+    [ ] Após aprovado do CAC, enviar confirmação para o cliente (WhatsApp / E-mail)
+    [ ] Após aprovação do CLIENTE, pedido fica liberado para carregamento
+
+3. Motorista [50h]
+  [ ] [4h] Listagem de motoristas
+  [ ] [8h] Possibilidade de cadastrar um novo motorista
+  [ ] [4h] Possibilidade de editar um motorista
+  [ ] [4h] Possibilidade de excluir um motorista
+    [ ] Não esta bem definido os campos de um motorista, então vamos para o basico: CPF/CNPJ / Nome / Endereço (CEP / Logradouro / Bairro / Cidade / Estado / Complemento)
+    [ ] Anexo da CNH
+  [ ] [8h] Possibilidade de adicionar / editar Veiculos
+    [ ] Não esta bem definido os campos de um veiculo, então vamos para o basico: Modelo / Marca / Cor / Tara / Lotação / Cubagem (Altura / Largura / Profundidade)
+    [ ] Anexo do Documento do Veículo
+
+4. Ações do usuário [40h]
+  [ ] [4h] Alterar senha
+  [ ] [8h] Alterar dados
+  [ ] [16h] Adicionar Empresa / Fazenda
+
+5. Financeiro [30h]
+  [ ] [8h] Listagem de contas a pagar
+    [ ] Filtros: CNPJ (apenas os vinculados ao usuário) / Vencimento / Status (A vencer / Pago / Vencido)
+  [ ] [8h] Opção de imprimir o boleto para pagar / impressão de varios boletos
+
+--- Dificuldades do Projeto
+
+Algumas funcionalidades devem ser integradas com o ERP atual utilizado, o grande problema é como realizar esta integração, descobrir a documentação para que possa ser realizado esta integração sem problema.
+
+Um outro problema relevante é a interface do usuário, isso pode ser um grande problema, visto que não é tão bem definido e pode sofre bastante alterações durante o processo de criação.
+
+A questão de controle de mensagens / utilização do chatguru para envio de mensagens e criação de campanhas, é possível ter a disposição das informações no sistema, mas seria necessário desenvolver algo mais ?
+
+--- Total estimado do Projeto
+
+Total estimado de horas do projeto 220 horas, cobrado 250 reais a hora, custo do projeto 55.000,00 reais.
+
+Tempo estimado para execução, trabalhando 10 horas na semana, seria 5 semanas e meia.
+
+-- Pontos a discutir
+
+No item 4 referente ao popup do whatsapp, será apenas um link para chamar o envio de mensagem via whatsapp ?
+
+No mesmo item onde exibe uma tela com mensagem, será necessário criação de um controle de e-mail dentro do sistema ?
+-- OUTLOOK api recepção de e-mail para exibição
+
+No item 5 referente o aceite das NFs emitidas, possui hoje esta questão de realizar o aceite delas ?
+Na questão dos relatórios, será utilizado relatórios já existentes hoje, sendo que o sistema deve realizar a chamada deles ou deve ser criado estes relatórios ?
+
