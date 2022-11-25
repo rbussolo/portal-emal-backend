@@ -7,10 +7,10 @@ import { UpdateUserService } from "./UpdateUserService";
 export class UpdateUserController {
   async handle(request: Request, response: Response) {
     const id: number = +request.params.id;
-    const { name, cpf_cnpj, cellphone } = request.body;
+    const { name, cpf_cnpj, cellphone, email, type } = request.body;
 
     const service = new UpdateUserService();
-    const result = await service.execute({ id, name, cpf_cnpj, cellphone });
+    const result = await service.execute({ id, name, cpf_cnpj, cellphone, email, type });
 
     if (result instanceof AppError) {
       return response.status(result.statusCode).json({ message: result.message });
