@@ -2,7 +2,7 @@ import { AppError } from './../../../../../errors/AppError';
 import { Request, Response } from "express";
 import { MigrateUserService } from "./MigrateUserService";
 
-export class MigrateuserController {
+export class MigrateUserController {
   async handle(request: Request, response: Response) {
     const { cpf_cnpj, email } = request.body;
 

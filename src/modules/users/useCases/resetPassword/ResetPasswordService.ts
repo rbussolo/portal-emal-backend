@@ -28,7 +28,7 @@ export class ResetPasswordService {
     const passwordValid = validPassword(password);
 
     if (!passwordValid.valid) {
-      return new PasswordError("A Senha informada é inválida!", passwordValid.messages);
+      return new PasswordError("A senha não esta no padrão necessário!", passwordValid.messages);
     }
 
     const repo = AppDataSource.getRepository(User);

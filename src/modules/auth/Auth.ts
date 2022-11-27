@@ -51,7 +51,7 @@ const KEY_REFRESH_TOKEN = "5AUZo0jaoziuUsZTBzC3on2Z5Lzt9tFv";
 const KEY_RESET_PASSWORD_TOKEN = "xKtWDf5mqRUc3Xa0TzncppiHpobHPdog";
 const KEY_MIGRATE_USER_TOKEN = "RVXA1qf8nPZIXbTkqKCHpTLjFgk7Ys5y";
 
-function decodToken(token: string, key_token: string) {
+function decodToken(token: string, key_token: string, name_token: string) {
   if (!token) {
     return new AppError("Token is necessary!");
   }
@@ -62,10 +62,10 @@ function decodToken(token: string, key_token: string) {
     return decoded;
   } catch (error) {
     if (error instanceof TokenExpiredError || error instanceof JsonWebTokenError || error instanceof NotBeforeError) {
-      return new AppError(error.name, 401);
+      return new AppError(error.name, 401, name_token);
     }
 
-    return new AppError("Access Token error", 401);
+    return new AppError("Access Token error", 401, name_token);
   }
 }
 
@@ -106,7 +106,7 @@ const Auth = {
     return { access_token, refresh_token };
   },
   validAccessToken: (access_token: string): AppError | DecodedAccessToken => {
-    const result = decodToken(access_token, KEY_ACCESS_TOKEN);
+    const result = decodToken(access_token, KEY_ACCESS_TOKEN, 'access_token');
 
     if(result instanceof AppError) {
       return result;
@@ -121,7 +121,7 @@ const Auth = {
     return decoded;
   },
   validRefreshToken: (refresh_token: string): AppError | DecodedRefreshToken => {
-    const result = decodToken(refresh_token, KEY_REFRESH_TOKEN);
+    const result = decodToken(refresh_token, KEY_REFRESH_TOKEN, 'refresh_token');
 
     if (result instanceof AppError) {
       return result;
@@ -136,7 +136,7 @@ const Auth = {
     return decoded;
   },
   validResetPasswordToken: (reset_password_token: string): DecodedResetPassword | AppError => {
-    const result = decodToken(reset_password_token, KEY_RESET_PASSWORD_TOKEN);
+    const result = decodToken(reset_password_token, KEY_RESET_PASSWORD_TOKEN, 'reset_token');
 
     if (result instanceof AppError) {
       return new AppError(result.message);
@@ -151,7 +151,7 @@ const Auth = {
     return decoded;
   },
   validMigrateUserToken: (migrate_user_token: string): DecodedMigrateUser | AppError => {
-    const result = decodToken(migrate_user_token, KEY_MIGRATE_USER_TOKEN);
+    const result = decodToken(migrate_user_token, KEY_MIGRATE_USER_TOKEN, 'migrate_token');
 
     if (result instanceof AppError) {
       return new AppError(result.message);
