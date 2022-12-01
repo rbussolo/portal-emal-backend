@@ -84,7 +84,7 @@ const Auth = {
   generateRefreshToken: (user_id: number): string => {
     const refresh_token = sign({
       user_id,
-      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24)
+      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 30)
     }, KEY_REFRESH_TOKEN); 
 
     return refresh_token;

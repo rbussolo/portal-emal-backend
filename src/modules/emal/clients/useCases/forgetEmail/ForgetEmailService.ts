@@ -1,7 +1,7 @@
 import { EmalDataSource } from "../../../../../data-source-emal";
 import { AppError } from "../../../../../errors/AppError";
 import { validCnpj } from "../../../../../utils/ValidCnpj";
-import { EmalClient } from "../../entities/EmalClient";
+import { EmalFornecedor } from "../../entities/EmalFornecedor";
 
 interface ForgetEmail {
   cpf_cnpj: string;
@@ -16,7 +16,7 @@ export class ForgetEmailService {
     if (!cpf_cnpj) return new AppError("É necessário informar o CNPJ!");
     if (!validCnpj(cpf_cnpj)) return new AppError("O CNPJ esta inválido!");
 
-    const repo = EmalDataSource.getRepository(EmalClient);
+    const repo = EmalDataSource.getRepository(EmalFornecedor);
     const result = await repo.find({ where: { FORCNPJCPF: cpf_cnpj } });
 
     if (result.length == 0) {

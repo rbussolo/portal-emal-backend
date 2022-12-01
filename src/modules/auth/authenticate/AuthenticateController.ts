@@ -9,7 +9,7 @@ export class AuthenticateController {
 
     const service = new AuthenticateService();
     const result = await service.execute({ email, password });
-
+    
     if(result instanceof AppError) {
       return response.status(result.statusCode).json({ code: result.code, message: result.message });
     }

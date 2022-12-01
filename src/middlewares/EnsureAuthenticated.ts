@@ -12,9 +12,9 @@ export async function ensuredAuthenticad(request: Request, response: Response, n
   const [, token] = authHeader.split(" ");
 
   const result = Auth.validAccessToken(token);
-
+  
   if (result instanceof AppError) {
-    return response.status(result.statusCode).json({ message: result.message });
+    return response.status(result.statusCode).json({ code: result.code, message: result.message });
   }
 
   request.user = {

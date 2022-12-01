@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryColumn } from "typeorm";
 
 @Entity("FORNECEDOR", { schema: "SYSDBA" })
-export class EmalClient {
+export class EmalFornecedor {
   @PrimaryColumn()
   FORCOD: number;
 

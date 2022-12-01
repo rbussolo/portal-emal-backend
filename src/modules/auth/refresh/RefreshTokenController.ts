@@ -12,7 +12,7 @@ export class RefreshTokenController {
 
     const service = new RefreshTokenService();
     const result = await service.execute(token);
-
+    
     if (result instanceof AppError) {
       return response.status(result.statusCode).json({ code: result.code, message: result.message });
     }

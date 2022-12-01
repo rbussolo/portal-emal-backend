@@ -2,14 +2,6 @@ import { AppDataSource } from "../../../../data-source";
 import { validPagination } from "../../../../utils/ValidPagination";
 import { User } from "../../entities/User";
 
-interface ListUserRequest {
-  page: number;
-  amount: number;
-  name: string;
-  email: string;
-  type: string;
-}
-
 interface Users {
   users: User[];
   count: number;

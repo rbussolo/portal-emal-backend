@@ -8,7 +8,7 @@ import { validPassword } from "../../../../../utils/ValidPassword";
 import { Auth } from "../../../../auth/Auth";
 import { User } from "../../../../users/entities/User";
 import { UserType } from "../../../../users/entities/UserType";
-import { EmalClient } from "../../entities/EmalClient";
+import { EmalFornecedor } from "../../entities/EmalFornecedor";
 
 interface NewPassword {
   token: string;
@@ -40,7 +40,7 @@ export class NewPasswordService {
       return new AppError("Já existe um usuário para o E-mail informado!");
     }
 
-    const repoClient = EmalDataSource.getRepository(EmalClient);
+    const repoClient = EmalDataSource.getRepository(EmalFornecedor);
     const result = await repoClient.find({ where: { FORCNPJCPF: decoded.cpf_cnpj, FOREMAIL: decoded.email } });
 
     if (result.length == 0) {
