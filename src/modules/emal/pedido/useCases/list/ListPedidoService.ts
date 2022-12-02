@@ -96,8 +96,6 @@ export class ListPedidoService {
     // Realiza a contagem
     const count = await OracleDB.count(query, params);
 
-    console.log(OracleDB.paginationSql({ query, page, amount }));
-
     if (!count) {
       return new AppError("Não foi localizado nenhum registro!");
     }
