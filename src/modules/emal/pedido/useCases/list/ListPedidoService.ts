@@ -39,19 +39,8 @@ export class ListPedidoService {
     let params = [];
     let query = `
     SELECT 
-      p.pedNum,
-      p.pedData,
-      c.cliCod,
-      c.cliCnpjCpf,
-      c.cliNome,
-      p.pedSit,
-      vu.unidade,
-      vu.empCod,
-      vu.empSigla,
-      vu.filCod,
-      vu.filial,
-      p.pedPesoTot,
-      p.pedTotalBruto
+      p.pedNum, p.pedData, c.cliCod, c.cliCnpjCpf, c.cliNome, p.pedSit,
+      vu.unidade, vu.empCod, vu.empSigla, vu.filCod, vu.filial, p.pedPesoTot, p.pedTotalBruto
     FROM sysdba.pedido p
     INNER JOIN sysdba.cliente c ON c.cliCod = p.pedCli
     INNER JOIN sysdba.view_unidades vu ON vu.empCod = p.pedEmp AND vu.filCod = p.pedFil
@@ -109,27 +98,9 @@ export class ListPedidoService {
     // Agora adiciona o agrupamento de informação
     query = `
       SELECT
-        x.pedNum,
-        x.pedData,
-        x.cliCod,
-        x.cliCnpjCpf,
-        x.cliNome,
-        x.pedSit,
-        x.unidade,
-        x.empCod,
-        x.empSigla,
-        x.filCod,
-        x.filial,
-        x.pedPesoTot,
-        x.pedTotalBruto,
-        ip.ipedNum,
-        ip.ipedQuant,
-        ip.ipedPesoTot,
-        ip.ipedUnit,
-        ip.ipedQuantDesp,
-        ip.ipedQuantCanc,
-        e.estqCod,
-        e.estqNome
+        x.pedNum, x.pedData, x.cliCod, x.cliCnpjCpf, x.cliNome, x.pedSit, x.unidade, x.empCod,
+        x.empSigla, x.filCod, x.filial, x.pedPesoTot, x.pedTotalBruto, ip.ipedNum, ip.ipedQuant,
+        ip.ipedPesoTot, ip.ipedUnit, ip.ipedQuantDesp, ip.ipedQuantCanc, e.estqCod, e.estqNome
       FROM ( 
         SELECT 
           x.*,
