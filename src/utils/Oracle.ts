@@ -25,6 +25,13 @@ const OracleDB = {
     const result: CountResult[] = await EmalDataSource.query(queryCount, params);
 
     return result[0].COUNT;
+  },
+  paginationSql: ({ query, page, amount }: PaginationProps): string => {
+    const max = page * amount;
+    const skip = (page - 1) * amount;
+    const queryPagination = 'SELECT x.* FROM (SELECT x.*, rownum as rnum FROM (' + query + ') x WHERE rownum <= ' + max + ') x WHERE rnum > ' + skip;
+    
+    return queryPagination;
   }
 }
 
