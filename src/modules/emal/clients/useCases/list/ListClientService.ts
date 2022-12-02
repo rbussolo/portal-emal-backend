@@ -1,4 +1,4 @@
-import { EmalDataSource } from './../../../../../data-source-emal';
+import { EmalDataSource } from '../../../../../data-source-emal';
 import { validPagination } from "../../../../../utils/ValidPagination";
 import { EmalCliente } from "../../entities/EmalCliente";
 import { OracleDB } from '../../../../../utils/Oracle';

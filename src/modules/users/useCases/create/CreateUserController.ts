@@ -1,4 +1,4 @@
-import { PasswordError } from './../../../../errors/PasswordError';
+import { PasswordError } from '../../../../errors/PasswordError';
 import { Request, Response } from 'express';
 import { AppError } from '../../../../errors/AppError';
 

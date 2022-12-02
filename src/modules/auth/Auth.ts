@@ -76,7 +76,7 @@ const Auth = {
       user: {
         id, name, email, cpf_cnpj, cellphone, type
       },
-      exp: Math.floor(Date.now() / 1000) + (60 * 15)
+      exp: Math.floor(Date.now() / 1000) + 10 // (60 * 15)
     }, KEY_ACCESS_TOKEN);
 
     return access_token;

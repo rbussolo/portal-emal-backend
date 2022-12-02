@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { ensuredAuthenticad } from "../middlewares/EnsureAuthenticated";
-import { CreateUserController } from "../modules/users/useCases/createUser/CreateUserController";
-import { DeleteUserController } from "../modules/users/useCases/deleteUser/DeleteUserController";
-import { GetUserByIdController } from "../modules/users/useCases/getUserById/GetUserByIdController";
-import { ListUserController } from "../modules/users/useCases/listUser/ListUserController";
-import { UpdateUserController } from "../modules/users/useCases/updateUser/UpdateUserController";
+import { CreateUserController } from "../modules/users/useCases/create/CreateUserController";
+import { DeleteUserController } from "../modules/users/useCases/delete/DeleteUserController";
+import { GetUserByIdController } from "../modules/users/useCases/getById/GetUserByIdController";
+import { ListUserController } from "../modules/users/useCases/list/ListUserController";
+import { UpdateUserController } from "../modules/users/useCases/update/UpdateUserController";
 
 const usersRoutes = Router();
 

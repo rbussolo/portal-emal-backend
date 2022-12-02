@@ -1,6 +1,6 @@
 import { User } from '../../entities/User';
 import { AppError } from '../../../../errors/AppError';
-import { AppDataSource } from './../../../../data-source';
+import { AppDataSource } from '../../../../data-source';
 import { validCpfCnpj } from '../../../../utils/ValidCpfCnpj';
 import { removeMaskCpfCnpj } from '../../../../utils/RemoveMaskCpfCnpj';
 

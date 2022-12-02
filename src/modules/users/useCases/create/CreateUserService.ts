@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
 
-import { AppError } from './../../../../errors/AppError';
+import { AppError } from '../../../../errors/AppError';
 import { AppDataSource } from "../../../../data-source";
 import { User } from "../../entities/User";
 import { validEmail } from '../../../../utils/ValidEmail';

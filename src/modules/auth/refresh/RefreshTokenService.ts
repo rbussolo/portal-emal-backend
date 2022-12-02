@@ -29,7 +29,7 @@ export class RefreshTokenService {
     if (nearToExpired) {
       refresh_token = Auth.generateRefreshToken(user.id);
     }
-    
+
     return { access_token, refresh_token };
   }
 }
