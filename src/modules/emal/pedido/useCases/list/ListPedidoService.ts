@@ -22,6 +22,7 @@ interface Pedido {
   IPEDUNIT: number;
   IPEDQUANTDESP: number;
   IPEDQUANTCANC: number;
+  IPEDQUANTSALDO: number;
   PEDPESOTOT: number;
   PEDTOTALBRUTO: number;
 }
@@ -32,8 +33,25 @@ interface Pedidos {
   countPerPage: number;
 }
 
+export interface ListPedidoProps {
+  page?: number;
+  amount?: number;
+  pedDataInicial?: Date;
+  pedDataFinal?: Date;
+  pedCli?: number;
+  pedNum?: number;
+  pedEmp?: number;
+  pedFil?: number;
+  estqCod?: number;
+  pedNobres?: boolean;
+  pedCuiaba?: boolean;
+  pedAcucar?: boolean;
+  pedItaipu?: boolean;
+  pedCamil?: boolean;
+}
+
 export class ListPedidoService {
-  async execute({ page, amount, pedDataInicial, pedDataFinal, pedCli, pedNum, pedEmp, pedFil, estqCod }): Promise<Pedidos | AppError> {
+  async execute({ page, amount, pedDataInicial, pedDataFinal, pedCli, pedNum, pedEmp, pedFil, estqCod, pedNobres, pedCuiaba, pedAcucar, pedItaipu, pedCamil }: ListPedidoProps): Promise<Pedidos | AppError> {
     const pagination = validPagination({ page, amount });
 
     let params = [];
@@ -82,6 +100,39 @@ export class ListPedidoService {
       params.push(estqCod);
     }
 
+    if (pedNobres == true || pedCuiaba == true || pedAcucar == true || pedItaipu == true || pedCamil == true) {
+      let company = " and (";
+      let companyOr = "";
+      
+      if (pedNobres == true) {
+        company += companyOr + "(p.pedEmp = 1 and p.pedFil = 0)";
+        companyOr = " or ";
+      }
+
+      if (pedCuiaba == true) {
+        company += companyOr + "(p.pedEmp = 1 and p.pedFil = 2)";
+        companyOr = " or ";
+      }
+
+      if (pedAcucar == true) {
+        company += companyOr + "(p.pedEmp = 1 and p.pedFil = 4)";
+        companyOr = " or ";
+      }
+
+      if (pedItaipu == true) {
+        company += companyOr + "(p.pedEmp = 3 and p.pedFil = 0)";
+        companyOr = " or ";
+      }
+
+      if (pedCamil == true) {
+        company += companyOr + "(p.pedEmp = 4 and p.pedFil = 0)";
+        companyOr = " or ";
+      }
+
+      company += ")";
+      query += company;
+    }
+
     // Realiza a contagem
     const count = await OracleDB.count(query, params);
 
@@ -100,7 +151,7 @@ export class ListPedidoService {
       SELECT
         x.pedNum, x.pedData, x.cliCod, x.cliCnpjCpf, x.cliNome, x.pedSit, x.unidade, x.empCod,
         x.empSigla, x.filCod, x.filial, x.pedPesoTot, x.pedTotalBruto, ip.ipedNum, ip.ipedQuant,
-        ip.ipedPesoTot, ip.ipedUnit, ip.ipedQuantDesp, ip.ipedQuantCanc, e.estqCod, e.estqNome
+        ip.ipedPesoTot, ip.ipedUnit, ip.ipedQuantDesp, ip.ipedQuantCanc, ip.ipedQuant - ip.ipedQuantDesp - ip.ipedQuantCanc as ipedQuantSaldo, e.estqCod, e.estqNome
       FROM ( 
         SELECT 
           x.*,
