@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { AppError } from "../../../../errors/AppError";
-import { PasswordError } from "../../../../errors/PasswordError";
+import { AppError } from "../../../../../errors/AppError";
+import { PasswordError } from "../../../../../errors/PasswordError";
 import { ResetPasswordService } from "./ResetPasswordService";
 
 export class ResetPasswordController {

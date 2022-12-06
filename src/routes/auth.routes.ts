@@ -4,9 +4,9 @@ import { RefreshTokenController } from "../modules/auth/refresh/RefreshTokenCont
 import { ForgetEmailController } from "../modules/emal/clients/useCases/forgetEmail/ForgetEmailController";
 import { MigrateUserController } from "../modules/emal/clients/useCases/migrateUser/MigrateUserController";
 import { NewPasswordController } from "../modules/emal/clients/useCases/newPassword/NewPasswordController";
-import { ForgotPasswordController } from "../modules/users/useCases/forgotPassword/ForgorPasswordController";
-import { ResetCheckController } from "../modules/users/useCases/resetCheck/ResetCheckController";
-import { ResetPasswordController } from "../modules/users/useCases/resetPassword/ResetPasswordController";
+import { ForgotPasswordController } from "../modules/users/useCases/password/forgot/ForgorPasswordController";
+import { ResetCheckController } from "../modules/users/useCases/password/check/ResetCheckController";
+import { ResetPasswordController } from "../modules/users/useCases/password/reset/ResetPasswordController";
 
 const authRoutes = Router();
 

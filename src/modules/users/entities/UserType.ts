@@ -5,5 +5,11 @@ const UserType = {
   Adm: "adm"
 }
 
-export { UserType };
+const UserClientState = {
+  Required: "required",
+  Aproved: "aproved",
+  Dissaproved: "dissaproved"
+}
+
+export { UserType, UserClientState };
 

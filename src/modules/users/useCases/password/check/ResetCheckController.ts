@@ -1,6 +1,6 @@
 import { ResetCheckService } from './ResetCheckService';
 import { Request, Response } from "express";
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "../../../../../errors/AppError";
 
 export class ResetCheckController {
   async handle(request: Request, response: Response){

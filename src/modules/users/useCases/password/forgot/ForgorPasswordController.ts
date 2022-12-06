@@ -1,7 +1,7 @@
-import { AppError } from './../../../../errors/AppError';
+import { AppError } from '../../../../../errors/AppError';
 import { Request, Response } from "express";
 import { ForgotPasswordService } from "./ForgotPasswordService";
-import { removeMaskCpfCnpj } from '../../../../utils/RemoveMaskCpfCnpj';
+import { removeMaskCpfCnpj } from '../../../../../utils/RemoveMaskCpfCnpj';
 
 export class ForgotPasswordController {
   async handle(request: Request, response: Response){

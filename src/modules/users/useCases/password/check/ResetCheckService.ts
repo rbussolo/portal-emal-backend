@@ -1,8 +1,8 @@
-import { AppDataSource } from "../../../../data-source";
-import { AppError } from "../../../../errors/AppError";
-import { Auth } from "../../../auth/Auth";
-import { Token } from "../../../tokens/entities/Token";
-import { User } from "../../entities/User";
+import { AppDataSource } from "../../../../../data-source";
+import { AppError } from "../../../../../errors/AppError";
+import { Auth } from "../../../../auth/Auth";
+import { Token } from "../../../../tokens/entities/Token";
+import { User } from "../../../entities/User";
 
 interface ResetCheck {
   token: string;

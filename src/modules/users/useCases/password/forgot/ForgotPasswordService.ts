@@ -1,8 +1,8 @@
-import { AppDataSource } from "../../../../data-source";
-import { AppError } from "../../../../errors/AppError";
-import { Auth } from "../../../auth/Auth";
-import { Smtp } from "../../../emails/smtp";
-import { User } from "../../entities/User";
+import { AppDataSource } from "../../../../../data-source";
+import { AppError } from "../../../../../errors/AppError";
+import { Auth } from "../../../../auth/Auth";
+import { Smtp } from "../../../../emails/smtp";
+import { User } from "../../../entities/User";
 
 interface ForgotPassword {
   email: string;

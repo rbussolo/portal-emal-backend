@@ -1,12 +1,12 @@
 import { hash } from "bcryptjs";
 
-import { AppDataSource } from "../../../../data-source";
-import { AppError } from "../../../../errors/AppError";
-import { PasswordError } from "../../../../errors/PasswordError";
-import { validPassword } from "../../../../utils/ValidPassword";
-import { Auth } from "../../../auth/Auth";
-import { Token } from "../../../tokens/entities/Token";
-import { User } from "../../entities/User";
+import { AppDataSource } from "../../../../../data-source";
+import { AppError } from "../../../../../errors/AppError";
+import { PasswordError } from "../../../../../errors/PasswordError";
+import { validPassword } from "../../../../../utils/ValidPassword";
+import { Auth } from "../../../../auth/Auth";
+import { Token } from "../../../../tokens/entities/Token";
+import { User } from "../../../entities/User";
 
 interface ResetPassword {
   token: string;
