@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import { AppError } from "../../../../../errors/AppError";
-import { ListUserClientService } from "./ListUserClientService";
+import { StateUserClientService } from "./StateUserClientService";
 
-export class ListUserClientController {
+export class StateUserClientController {
   async handle(request: Request, response: Response) {
-    const user_id: number = parseInt(request.params.user_id);
+    const id: number = +request.params.id;
+    const { state } = request.body;
     
-    const service = new ListUserClientService();
-    const result = await service.execute(user_id);
+    const service = new StateUserClientService();
+    const result = await service.execute({ id, state });
 
     if (result instanceof AppError) {
       return response.status(result.statusCode).json({ message: result.message });

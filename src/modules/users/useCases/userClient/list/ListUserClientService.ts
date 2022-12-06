@@ -9,8 +9,8 @@ export class ListUserClientService {
     }
 
     const repo = AppDataSource.getRepository(UserClient);
-    const user_clients = await repo.find({ where: { user_id }});
-
+    const user_clients = await repo.find({ where: { user_id }, order: { id: { direction: 'ASC' } }});
+    
     return user_clients;
   }
 }

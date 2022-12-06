@@ -15,14 +15,19 @@ export class CreateUserClientService {
     if (!user_id) return new AppError("É necessário informar o Usuário!");
     if (!client_id) return new AppError("É necessário informar o Cliente!");
     
+    const repo = AppDataSource.getRepository(UserClient);
+    const userClientExists = await repo.find({ where: { client_id, user_id }});
+
+    if (userClientExists.length) {
+      return new AppError("Já existe vinculo deste usuário com este cliente!");
+    }
+
     const repoClient = EmalDataSource.getRepository(EmalCliente);
     const resultClient = await repoClient.find({ where: { CLICOD: client_id } });
 
     if (!resultClient) {
       return new AppError("Cliente não localizado!")
     }
-
-    const repo = AppDataSource.getRepository(UserClient);
 
     const userClient = repo.create({
       user_id,
