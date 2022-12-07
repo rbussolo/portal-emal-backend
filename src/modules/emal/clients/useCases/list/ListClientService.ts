@@ -3,9 +3,10 @@ import { validPagination } from "../../../../../utils/ValidPagination";
 import { EmalCliente } from "../../entities/EmalCliente";
 import { OracleDB } from '../../../../../utils/Oracle';
 
-interface ListClientRequest {
+export interface ListClientRequest {
   page: number;
   amount: number;
+  cod: number;
   name: string;
   cpfCnpj: string;
 }
@@ -17,11 +18,16 @@ interface Clients {
 }
 
 export class ListClientService {
-  async execute({ page, amount, name, cpfCnpj }): Promise<Clients> {
+  async execute({ page, amount, cod, name, cpfCnpj }: ListClientRequest): Promise<Clients> {
     const pagination = validPagination({ page, amount });
 
     let query = "select cliCod, cliNome, cliCnpjCpf, cliEmail from sysdba.cliente where 1 = 1";
     let params = [];
+
+    if (cod) {
+      query += " and cliCod = :cod";
+      params.push(cod);
+    }
 
     if (name) {
       query += " and cliNome like :name";
