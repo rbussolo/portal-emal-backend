@@ -1,0 +1,100 @@
+-- Atividades já realizadas
+
+25/11/2022 - 27/11/2022
+[x] [2h] Criação do projeto back-end / front-end
+[x] [2h] Criação da conexão com o banco do cliente
+[x] [4h] [front] Criação da tela de login
+[x] [4h] [front] Criação da tela de primeiro acesso
+[x] [4h] [front] Criação da tela de esqueci minha senha
+[x] [4h] [front] Criação da tela de resetar a senha
+[x] [6h] [front] Criação do template usado no sistema
+[x] [6h] [front] Criação da tela de consulta de usuários
+[x] [6h] [front] Criação da tela de inclusão de novos usuários
+[x] [8h] [back]  Criação da autenticação
+[x] [6h] [back]  Criação do esquema de envio de e-mail
+[x] [6h] [back]  Criação do primeiro acesso verificando banco do cliente
+[x] [12h] [back]  Criação de um Novo / Leitura / Atualização / Remoção do usuário
+
+-- Atividades a serem feitas
+
+28/11/2022 - 04/12/2022
+[ ] [3h] [front] Criação da tela de consulta de pedidos
+  [x] Paginação padrão de 50 pedidos por paginas
+  [ ] Consulta realizada através dos campos: Período / CNPJ / Produto / Saldo / Cidade / Nº Pedido / Industrias (campo obrigatório)
+  [ ] Exibir em lista o resultado com os seguintes campos: Nº Pedido / Data / Cliente / Situação / Usina / Produto / Qtde (t) / R$ (t) / Despachado (t) / Cancelado (t) / Saldo (t) / Total (R$)
+  [ ] Ações da grid: Replicar / Alterar / Cancelar
+[ ] [5h] [front/back] Criação da tela de consulta de cliente (popup)
+[ ] [5h] [front/back] Criação da tela de consulta de produtos (popup)
+[ ] [5h] [back]  Criação do serviço de listagem de pedidos
+
+05/12/2022 - 18/12/2022
+[ ] [20h] [front] Criação da tela de inclusão de pedidos
+  [ ] Abrir tela com os dados do Pedido
+  [ ] Necessário informar os campos
+    [ ] CNPJ - Listar em combo apenas os CNPJs vinculados ao login de acesso
+    [ ] Carrega automaticamente as informações ao selecionar o CNPJ: Razão Social / Endereço / Fazenda / Número / Complemento / Bairro / Cidade
+    [ ] Possibilidade de adicionar vários itens ao pedido
+      [ ] O item deve conter os campos: Produto / Quantidade / Despachado
+    [ ] Possibilidade de adicionar vários transportadores
+      [ ] O transporte deve conter os campos: Placa / Motorista / Empresa / Produto / Quantidade
+    [ ] Condição de Pagamento e Cobrança, deve conter os campos: Parcela / Prazo / Total
+    [ ] Campo de Observação
+[ ] [2h] [front] Criação da tela de exclusão de pedidos
+[ ] [16h] [back]  Criação da validação do que é necessário ao pedido
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Realizar a inclusão do pedido (Via Web Service)
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Realizar a exclusão do pedido (Via Web Service)
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Realizar a duplicação do pedido (Via Web Service)
+
+19/12/2022 - 25/12/2022
+[ ] [8h] [front] Criação da tela de edição de pedidos
+  [ ] Na edição também tem que ter a opção de adicionar um Novo Carregamento
+  [ ] Na tela de Novo Carregamento ou Alteração do Transporte, deve abrir uma tela com os dados do transporte
+    [ ] Tela deve constituir com os seguintes dados: Tipo / Motorista / Empresa / Produto / Quantidade / Saldo
+    [ ] O Saldo não pode ficar negativo, deve bloquear a ação de gravar e constar a seguinte mensagem: Quantidade excede ao pedido. Entre em contato com o CAC ou faça um novo pedido.
+[ ] [6h] [back]  Criação do relacionamento entre o usuário e cliente
+[ ] [6h] [back]  Criação da listagens das combos que são exibidas na tela de inclusão
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Realizar a edição do pedido (Via Web Service)
+
+26/12/2022 - 01/01/2023
+[ ] [8h] [front] Criação da tela de aprovação / reprovação de um pedido
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Realizar a aprovação / reprovação de um pedido pelo CAC (Via Web Service)
+
+02/01/2023 - 08/01/2023
+[ ] [4h] [front] Criação da tela de localização das indústrias
+[ ] [8h] [front] Criação da tela de listagem de motorista
+[ ] [8h] [front] Criação da tela de inclusão / edição de motorista
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Inclusão / edição de motorista no banco de dados
+
+09/01/2023 - 15/01/2023
+[ ] [8h] [front] Criação da tela de listagem de veiculos
+[ ] [8h] [front] Criação da tela de inclusão / edição de veiculos
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Inclusão / edição de veiculos no banco de dados
+
+16/01/2023 - 22/01/2023
+[ ] [8h] [front] Criação da tela de listagem de transporte
+[ ] [8h] [front] Criação da tela de inclusão / edição de transporte
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Inclusão / edição de transporte no banco de dados
+
+23/01/2023 - 29/01/2023
+[ ] [4h] [front] Criação da tela de listagem das Notas Fiscais
+[ ] [4h] [back]  Criação do serviço de listagem de Notas Fiscais
+[ ] [6h] [front] Criação da tela de aprovação das Notas Fiscais pelo cliente
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Aceite da Nota Fiscal no sistema (Via Servico)
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Impressão da Nota Fiscal no sistema (Via Servico)
+
+30/01/2023 - 05/01/2023
+[ ] [6h] [front/back] Criação da home com os carregamentos pendentes
+[ ] [8h] [front/back] Criação da listagem dos débitos / contas do cliente
+[ ] [2h] [INTEGRACAO] [back] [SERVICO] Impressão do boleto pelo sistema (Via Servico)
+
+06/01/2023 - 19/02/2023
+[ ] [6h] [front/back] Criação da consulta da situação cadastral
+[ ] [4h] [front/back] Criação da tela de relatórios
+[ ] [10h] [front/back] Criação da emissão dos relatórios
+
+20/01/2023 - 05/03/2023
+[ ] [20h] [front/back] Integração com Chatguru / Criação da tela de comunicação com usuário externo
+[ ] [3h] [back]  Criação da comunicação via e-mail referente a um novo pedido
+[ ] [3h] [back]  Criação da comunicação via whatsapp referente a um novo pedido
+[ ] [3h] [back]  Criação da comunicação via e-mail referente a aprovação / rejeição de um pedido
+[ ] [3h] [back]  Criação da comunicação via whatsapp referente a aprovação / rejeição de um pedido

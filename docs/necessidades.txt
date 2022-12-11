@@ -11,11 +11,11 @@ Disponibilizar acesso para que o cliente, transportadora e representantes consig
 --- Funcionalidades
 
 1. Acesso do usuário [20h]
-  [ ] [4h] Criação de tela para acesso do usuário
-  [ ] [4h] Criar rotina para o "primeiro acesso"
-    [ ] Solicitar o CPF/CNPJ e e-mail de contato
-    [ ] Dar a possibilidade de exibir o e-mail de contato caso o usuário não lembre qual o e-mail esta presente no cadastro atual
-    [ ] Enviar e-mail com um link para o usuário informar a nova senha (link deve ficar válido por 15 minutos)
+  [x] [4h] Criação de tela para acesso do usuário
+  [x] [4h] Criar rotina para o "primeiro acesso"
+    [x] Solicitar o CPF/CNPJ e e-mail de contato
+    [x] Dar a possibilidade de exibir o e-mail de contato caso o usuário não lembre qual o e-mail esta presente no cadastro atual
+    [x] Enviar e-mail com um link para o usuário informar a nova senha (link deve ficar válido por 15 minutos)
 
 2. Pedidos [80h]
   [ ] [CHATGURU] [4h] Para cada movimentação do pedido, será enviado um E-mail / WhatsApp (podendo ser configurado o envio de mais de uma mensagem por movimentação)

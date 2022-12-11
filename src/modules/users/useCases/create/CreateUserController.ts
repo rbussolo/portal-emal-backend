@@ -8,6 +8,8 @@ export class CreateUserController {
   async handle(request: Request, response: Response){
     const { email, password, name, cpf_cnpj, cellphone, type } = request.body;
 
+    console.log({ email, password, name, cpf_cnpj, cellphone, type })
+
     const service = new CreateUserService();
     const result = await service.execute({ email, password, name, cpf_cnpj, cellphone, type });
 

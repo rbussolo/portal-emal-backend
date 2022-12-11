@@ -1,0 +1,111 @@
+Dados da nota: 
+Filial Cuiabá - CBA
+Emal – Empresa de Mineração Aripuanã Ltda
+Av. Manoel José de Arruda (Av. Beira Rio), 2409 – Grande Terceiro – Cuiabá – MT – CEP: 78.065-700
+Fone/Fax: (65) 3618-3344 – E-mail: compras@emal.com.br
+CNPJ 44.026.037/0003-26 – Insc. Estadual n° 13.123.512-5
+
+Valor: 9.166,66
+
+PEDSIT
+0 =Aprovado
+1 = Cancelado
+2 = Pendente
+3 = Custo OK
+4 = Reprovado
+
+select * from sysdba.pedido
+
+PEDEMP
+PEDFIL
+PEDCLI
+
+
+EMP 1,3,4
+
+EMP 1 FIL 0 NOBRES
+EMP 1 FIL 2 CUIABA
+EMP 1 FIL 4 ACUCAR
+EMP 3 FIL 0 ITAIPU
+EMP 4 FIL 0 CAMIL
+
+EMP 3 FIL 19 RP
+
+SELECT * FROM SYSDBA.VIEW_UNIDADES
+
+-- Lista detalhada de atividades
+
+-- Atividades já realizadas
+
+[ ] Criação do projeto back-end / front-end
+[ ] Criação da conexão com o banco do cliente
+[ ] [front] Criação da tela de login
+[ ] [front] Criação da tela de primeiro acesso
+[ ] [front] Criação da tela de esqueci minha senha
+[ ] [front] Criação da tela de resetar a senha
+[ ] [front] Criação do template usado no sistema
+[ ] [front] Criação da tela de consulta de usuários
+[ ] [front] Criação da tela de inclusão de novos usuários
+[ ] [back]  Criação da autenticação
+[ ] [back]  Criação do esquema de envio de e-mail
+[ ] [back]  Criação do primeiro acesso verificando banco do cliente
+[ ] [back]  Criação de um Novo / Leitura / Atualização / Remoção do usuário
+
+-- Atividades a serem feitas
+
+[ ] [front] Criação da tela de consulta de pedidos
+  [ ] Paginação padrão de 50 pedidos por paginas
+  [ ] Consulta realizada através dos campos: Período / CNPJ / Produto / Saldo / Cidade / Nº Pedido / Industrias (campo obrigatório)
+  [ ] Exibir em lista o resultado com os seguintes campos: Nº Pedido / Data / Cliente / Situação / Usina / Produto / Qtde (t) / R$ (t) / Despachado (t) / Cancelado (t) / Saldo (t) / Total (R$)
+  [ ] Ter a opção de REPLICAR - Antes da situação Aprovado
+  [ ] Ter a opção de ALTERAR
+  [ ] Ter a opção de CANCELAR - Antes da situação Aprovado
+[ ] [front] Criação da tela de inclusão de pedidos
+  [ ] Abrir tela com os dados do Pedido
+  [ ] Necessário informar os campos
+    [ ] CNPJ - Listar em combo apenas os CNPJs vinculados ao login de acesso
+    [ ] Carrega automaticamente as informações ao selecionar o CNPJ: Razão Social / Endereço / Fazenda / Número / Complemento / Bairro / Cidade
+    [ ] Possibilidade de adicionar vários itens ao pedido
+      [ ] O item deve conter os campos: Produto / Quantidade / Despachado
+    [ ] Possibilidade de adicionar vários transportadores
+      [ ] O transporte deve conter os campos: Placa / Motorista / Empresa / Produto / Quantidade
+    [ ] Condição de Pagamento e Cobrança, deve conter os campos: Parcela / Prazo / Total
+    [ ] Campo de Observação
+[ ] [front] Criação da tela de exclusão de pedidos
+[ ] [front] Criação da tela de edição de pedidos
+  [ ] Na edição também tem que ter a opção de adicionar um Novo Carregamento
+  [ ] Na tela de Novo Carregamento ou Alteração do Transporte, deve abrir uma tela com os dados do transporte
+    [ ] Tela deve constituir com os seguintes dados: Tipo / Motorista / Empresa / Produto / Quantidade / Saldo
+    [ ] O Saldo não pode ficar negativo, deve bloquear a ação de gravar e constar a seguinte mensagem: Quantidade excede ao pedido. Entre em contato com o CAC ou faça um novo pedido.
+[ ] [back]  Criação do serviço de listagem de pedidos
+[ ] [back]  Criação da listagens das combos que são exibidas na tela de inclusão
+[ ] [back]  Criação da validação do que é necessário ao pedido
+[ ] [back] [SERVICO] Realizar a inclusão do pedido no sistema já existente
+
+
+[ ] [back]  Criação da comunicação via e-mail referente a um novo pedido
+[ ] [back]  Criação da comunicação via whatsapp referente a um novo pedido
+[ ] [back]  Criação da comunicação via e-mail referente a aprovação / rejeição de um pedido
+[ ] [back]  Criação da comunicação via whatsapp referente a aprovação / rejeição de um pedido
+[ ] [back] [SERVICO] Realizar a aprovação / reprovação de um pedido pelo CAC
+[ ] [front] Criação da tela de localização das indústrias
+[ ] [front] Criação da tela de listagem de motorista
+[ ] [front] Criação da tela de inclusão / edição de motorista
+[ ] [back] [SERVICO] Inclusão / edição de motorista no banco de dados
+[ ] [front] Criação da tela de listagem de veiculos
+[ ] [front] Criação da tela de inclusão / edição de veiculos
+[ ] [back] [SERVICO] Inclusão / edição de veiculos no banco de dados
+[ ] [front] Criação da tela de listagem de transporte
+[ ] [front] Criação da tela de inclusão / edição de transporte
+[ ] [back] [SERVICO] Inclusão / edição de transporte no banco de dados
+[ ] [front] Criação da tela de listagem das Notas Fiscais
+[ ] [back]  Criação do serviço de listagem
+[ ] [front] Criação da tela de aprovação das Notas Fiscais pelo cliente
+[ ] [back] [SERVICO] Aceite da Nota Fiscal no sistema já existente
+[ ] [front/back] Criação da home com os carregamentos pendentes
+[ ] [front/back] Criação da listagem dos débitos / contas do cliente
+[ ] [back] [SERVICO] Impressão do boleto pelo sistema já existente
+[ ] [front/back] Criação da consulta da situação cadastral
+[ ] [front/back] Criação da tela de relatórios
+[ ] [front/back] Criação da emissão dos relatórios
+[ ] [front/back] Integração com Chatguru / Criação da tela de comunicação com usuário externo
