@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
+    "migration": "typeorm-ts-node-commonjs migration:run -d .\\src\\data-source.ts",
     "start": "ts-node src/server.ts"
   },
   "dependencies": {
