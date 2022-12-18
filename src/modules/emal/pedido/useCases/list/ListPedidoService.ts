@@ -162,7 +162,7 @@ export class ListPedidoService {
       LEFT JOIN sysdba.estoque e ON e.estqCod = ip.ipedEstq`;
 
     // Carrega os dados
-    const pedidos: Pedido[] = await OracleDB.pagination({ query, params, page: pagination.page, amount: pagination.amount });
+    const pedidos: Pedido[] = await OracleDB.execute({ query, params });
 
     return { pedidos, count, countPerPage: pagination.amount };
   }

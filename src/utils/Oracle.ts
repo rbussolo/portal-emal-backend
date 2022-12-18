@@ -11,7 +11,17 @@ interface PaginationProps {
   amount: number;
 }
 
+interface ExecuteProps {
+  query: string;
+  params?: any[];
+}
+
 const OracleDB = {
+  execute: async({ query, params }: ExecuteProps): Promise<any> => {
+    const result = await EmalDataSource.query(query, params);
+
+    return result;
+  },
   pagination: async ({ query, params, page, amount }: PaginationProps): Promise<any> => {
     const max = page * amount;
     const skip = (page - 1) * amount;
