@@ -20,12 +20,12 @@
 28/11/2022 - 04/12/2022
 [ ] [3h] [front] Criação da tela de consulta de pedidos
   [x] Paginação padrão de 50 pedidos por paginas
-  [ ] Consulta realizada através dos campos: Período / CNPJ / Produto / Saldo / Cidade / Nº Pedido / Industrias (campo obrigatório)
-  [ ] Exibir em lista o resultado com os seguintes campos: Nº Pedido / Data / Cliente / Situação / Usina / Produto / Qtde (t) / R$ (t) / Despachado (t) / Cancelado (t) / Saldo (t) / Total (R$)
+  [x] Consulta realizada através dos campos: Período / CNPJ / Produto / Saldo / Cidade / Nº Pedido / Industrias (campo obrigatório)
+  [x] Exibir em lista o resultado com os seguintes campos: Nº Pedido / Data / Cliente / Situação / Usina / Produto / Qtde (t) / R$ (t) / Despachado (t) / Cancelado (t) / Saldo (t) / Total (R$)
   [ ] Ações da grid: Replicar / Alterar / Cancelar
-[ ] [5h] [front/back] Criação da tela de consulta de cliente (popup)
-[ ] [5h] [front/back] Criação da tela de consulta de produtos (popup)
-[ ] [5h] [back]  Criação do serviço de listagem de pedidos
+[x] [5h] [front/back] Criação da tela de consulta de cliente (popup)
+[x] [5h] [front/back] Criação da tela de consulta de produtos (popup)
+[x] [5h] [back]  Criação do serviço de listagem de pedidos
 
 05/12/2022 - 18/12/2022
 [ ] [20h] [front] Criação da tela de inclusão de pedidos
