@@ -21,7 +21,7 @@ export class ListClientService {
   async execute({ page, amount, cod, name, cpfCnpj }: ListClientRequest): Promise<Clients> {
     const pagination = validPagination({ page, amount });
 
-    let query = "select cliCod, cliNome, cliCnpjCpf, cliEmail from sysdba.cliente where 1 = 1";
+    let query = "select cliCod, cliNome, cliCnpjCpf, cliEmail from sysdba.cliente c where 1 = 1";
     let params = [];
 
     if (cod) {

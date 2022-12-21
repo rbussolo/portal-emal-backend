@@ -13,11 +13,11 @@ export class ListEstoqueService {
   async execute({ page, amount, cod, name }): Promise<Estoques | AppError> {
     const pagination = validPagination({ page, amount });
 
-    let query = "select estqCod || '' as estqCod, estqNomeComp, estqApelido, estqNcm from sysdba.estoque where 1 = 1";
+    let query = "select estqCod as estqCod, estqNomeComp, estqApelido, estqNcm from sysdba.estoque e inner join sysdba.grupoalmoxarifado ga on ga.galmcod = e.estqgalm where ga.galmprodvenda = 'S'";
     let params = [];
 
-    if (cod) {
-      query += " and estqCod like :cod";
+    if (cod && cod > 0) {
+      query += " and estqCod = :cod";
       params.push(cod);
     }
 
@@ -34,7 +34,7 @@ export class ListEstoqueService {
     }
 
     // Adicionado ordenação
-    query += " ORDER BY estqNomeComp";
+    query += " ORDER BY estqCod";
 
     // Carrega os dados
     const estoques: EmalEstoque[] = await OracleDB.pagination({ query, params, page: pagination.page, amount: pagination.amount });
