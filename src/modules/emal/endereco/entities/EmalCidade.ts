@@ -9,7 +9,7 @@ export class EmalCidade {
   CIDNOME: string;
 
   @Column()
-  CIDEST: string;
+  CIDEST: number;
 
   @Column()
   CIDCODIBGE: string;

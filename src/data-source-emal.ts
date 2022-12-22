@@ -10,7 +10,7 @@ export const EmalDataSource = new DataSource({
   serviceName: process.env.DATABASE_EMAL_SERVICE,
   synchronize: false,
   logging: false,
-  entities: ["src/modules/emal/clients/entities/*.ts", "src/modules/emal/cidade/entities/*.ts", "src/modules/emal/estoques/entities/*.ts", "src/modules/emal/pedido/entities/*.ts"],
+  entities: ["src/modules/emal/clients/entities/*.ts", "src/modules/emal/endereco/entities/*.ts", "src/modules/emal/estoques/entities/*.ts", "src/modules/emal/pedido/entities/*.ts"],
   migrations: [],
   subscribers: [],
 });
