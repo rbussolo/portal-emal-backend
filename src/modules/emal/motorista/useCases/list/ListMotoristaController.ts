@@ -4,13 +4,14 @@ import { queryParamToInt } from "../../../../../utils/QueryParams";
 
 export class ListMotoristaController {
   async handle(request: Request, response: Response) {
-    const { page, amount, MOTCPF, MOTNOME, MOTCIDADE } = request.query;
+    const { page, amount, MOTCPF, MOTNOME, CIDCOD, ESTCOD } = request.query;
     const filters: ListMotoristaRequest = {
       page: queryParamToInt(page),
       amount: queryParamToInt(amount),
       MOTCPF: MOTCPF as string,
       MOTNOME: MOTNOME as string,
-      MOTCIDADE: queryParamToInt(MOTCIDADE)
+      CIDCOD: queryParamToInt(CIDCOD),
+      ESTCOD: queryParamToInt(ESTCOD)
     }
 
     const service = new ListMotoristaService();

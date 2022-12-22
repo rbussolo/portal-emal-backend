@@ -6,7 +6,8 @@ export interface ListMotoristaRequest {
   amount?: number;
   MOTCPF?: string;
   MOTNOME?: string;
-  MOTCIDADE?: number;
+  CIDCOD?: number;
+  ESTCOD?: number;
 }
 
 interface Motorista {
@@ -26,7 +27,7 @@ interface Motoristas {
 }
 
 export class ListMotoristaService {
-  async execute({ page, amount, MOTCPF, MOTNOME, MOTCIDADE }: ListMotoristaRequest): Promise<Motoristas> {
+  async execute({ page, amount, MOTCPF, MOTNOME, CIDCOD, ESTCOD }: ListMotoristaRequest): Promise<Motoristas> {
     const pagination = validPagination({ page, amount });
 
     let query = "select motCod, motNome, motCpf, motTelefone, motCelular, cidCod, cidNome from sysdba.motorista m inner join sysdba.cidade c on c.cidCod = m.motCidade where 1 = 1";
@@ -42,9 +43,14 @@ export class ListMotoristaService {
       params.push(MOTNOME.toUpperCase() + '%');
     }
 
-    if (MOTCIDADE && MOTCIDADE > 0) {
-      query += " and motCidade = :motCidade";
-      params.push(MOTCIDADE);
+    if (CIDCOD && CIDCOD > 0) {
+      query += " and cidCod = :cidCod";
+      params.push(CIDCOD);
+    }
+
+    if (ESTCOD && ESTCOD > 0) {
+      query += " and cidEst = :cidEst";
+      params.push(ESTCOD);
     }
 
     // Realiza a contagem
