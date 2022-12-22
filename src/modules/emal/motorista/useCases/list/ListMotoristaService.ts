@@ -21,7 +21,7 @@ interface Motorista {
 }
 
 interface Motoristas {
-  clients: Motorista[];
+  motorista: Motorista[];
   count: number;
   countPerPage: number;
 }
@@ -60,9 +60,9 @@ export class ListMotoristaService {
     query += " ORDER BY motNome";
 
     // Carrega os clientes
-    const clients: Motorista[] = await OracleDB.pagination({ query, params, page: pagination.page, amount: pagination.amount });
+    const motorista: Motorista[] = await OracleDB.pagination({ query, params, page: pagination.page, amount: pagination.amount });
 
-    return { clients, count, countPerPage: pagination.amount };
+    return { motorista, count, countPerPage: pagination.amount };
   }
 }
 
