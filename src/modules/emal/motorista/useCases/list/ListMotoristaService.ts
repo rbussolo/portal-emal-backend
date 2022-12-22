@@ -4,7 +4,7 @@ import { validPagination } from "../../../../../utils/ValidPagination";
 export interface ListMotoristaRequest {
   page?: number;
   amount?: number;
-  MOTCOD?: number;
+  MOTCPF?: string;
   MOTNOME?: string;
   MOTCIDADE?: number;
 }
@@ -26,15 +26,15 @@ interface Motoristas {
 }
 
 export class ListMotoristaService {
-  async execute({ page, amount, MOTCOD, MOTNOME, MOTCIDADE }: ListMotoristaRequest): Promise<Motoristas> {
+  async execute({ page, amount, MOTCPF, MOTNOME, MOTCIDADE }: ListMotoristaRequest): Promise<Motoristas> {
     const pagination = validPagination({ page, amount });
 
     let query = "select motCod, motNome, motCpf, motTelefone, motCelular, cidCod, cidNome from sysdba.motorista m inner join sysdba.cidade c on c.cidCod = m.motCidade where 1 = 1";
     let params = [];
 
-    if (MOTCOD && MOTCOD > 0) {
-      query += " and motCod = :motCod";
-      params.push(MOTCOD);
+    if (MOTCPF) {
+      query += " and motCpf = :motCpf";
+      params.push(MOTCPF);
     }
 
     if (MOTNOME && MOTNOME.length > 0) {
