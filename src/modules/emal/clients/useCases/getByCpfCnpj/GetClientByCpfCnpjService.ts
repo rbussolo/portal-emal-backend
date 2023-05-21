@@ -19,8 +19,8 @@ export class GetClientByCpfCnpjService {
     cpf_cnpj = maskCpfCnpj(cpf_cnpj);
 
     const repo = EmalDataSource.getRepository(EmalCliente);
-    const result = await repo.find({ where: { CLICNPJCPF: cpf_cnpj }});
-    
+    const result = await repo.find({ where: { CLICNPJCPF: cpf_cnpj }, relations: ['CIDADE'] });
+
     if (!result) {
       return new AppError("Não foi localizado nenhum registro com este CPF/CNPJ!");
     }

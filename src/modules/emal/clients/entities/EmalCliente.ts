@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
+import { EmalCidade } from "../../endereco/entities/EmalCidade";
 
 @Entity("CLIENTE", { schema: "SYSDBA" })
 export class EmalCliente {
@@ -37,6 +38,10 @@ export class EmalCliente {
 
   @Column()
   CLICIDADE: number;
+
+  @ManyToOne(() => EmalCidade)
+  @JoinColumn({ name: "CLICIDADE" })
+  CIDADE: EmalCidade;
 
   @Column()
   CLICOBCEP: string;
