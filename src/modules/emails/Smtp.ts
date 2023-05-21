@@ -19,7 +19,7 @@ interface EmailMessage {
   content: string;
 }
 
-const from = '"Postal Atendimento" <rbussolo91@gmail.com>';
+const from = '"Portal Atendimento" <rbussolo91@gmail.com>';
 
 const smtpTransporterOption: SMTPTransport.Options = {
   host: process.env.SMTP_HOST,

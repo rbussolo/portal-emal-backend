@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from "typeorm";
 
 export const EmailStatus = {
-  WAINTING: 'waiting',
+  WAITING: 'waiting',
   SENT: 'sent',
   FAILED: 'failed',
   CANCELED: 'canceled'
@@ -27,7 +27,7 @@ export class Email {
   @Column({
     type: "enum",
     enum: EmailStatus,
-    default: EmailStatus.WAINTING,
+    default: EmailStatus.WAITING,
     nullable: true
   })
   status: string;
